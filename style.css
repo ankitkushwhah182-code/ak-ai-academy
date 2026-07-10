@@ -1,0 +1,83 @@
+
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&display=swap');
+*{margin:0;padding:0;box-sizing:border-box;font-family:'Poppins',sans-serif;scroll-behavior:smooth}
+:root{
+--gold:#D4AF37;
+--gold2:#FFD700;
+--bg:#050505;
+--card:#151515;
+--text:#fff;
+}
+body{background:var(--bg);color:var(--text);overflow-x:hidden}
+header{position:fixed;top:0;width:100%;background:rgba(0,0,0,.75);backdrop-filter:blur(10px);z-index:999}
+.navbar{display:flex;justify-content:space-between;align-items:center;padding:18px 8%}
+.logo{color:var(--gold);font-size:30px;font-weight:700}
+.navbar ul{display:flex;list-style:none;gap:25px}
+.navbar a{text-decoration:none;color:#fff}
+.navbar a:hover{color:var(--gold)}
+.join-btn,.main-btn,.pay-btn{
+display:inline-block;
+padding:14px 28px;
+background:linear-gradient(135deg,var(--gold2),var(--gold));
+color:#000;
+border-radius:40px;
+font-weight:700;
+text-decoration:none;
+transition:.3s}
+.join-btn:hover,.main-btn:hover,.pay-btn:hover{
+transform:translateY(-3px);
+box-shadow:0 0 20px rgba(212,175,55,.4)}
+.hero{
+min-height:100vh;
+display:flex;
+justify-content:space-between;
+align-items:center;
+padding:120px 8% 60px;
+background:radial-gradient(circle at top,#3d2b00,#050505)}
+.hero-left{max-width:560px}
+.hero-left h1{font-size:64px;color:var(--gold);line-height:1.1}
+.hero-left p{margin:25px 0;color:#ddd}
+.hero-right img,.founder-card img{
+width:340px;
+border-radius:20px;
+border:3px solid var(--gold);
+box-shadow:0 0 35px rgba(212,175,55,.35)}
+.hero-right img{animation:float 4s ease-in-out infinite}
+section{padding:80px 8%}
+h2{text-align:center;color:var(--gold);margin-bottom:30px}
+.founder-card{
+display:flex;
+gap:30px;
+align-items:center;
+background:rgba(255,255,255,.04);
+border:1px solid rgba(212,175,55,.25);
+padding:30px;
+border-radius:18px}
+.signature{width:180px;border:none;box-shadow:none;margin-top:15px}
+.cards{
+display:grid;
+grid-template-columns:repeat(auto-fit,minmax(220px,1fr));
+gap:20px}
+.card{
+background:var(--card);
+border:1px solid rgba(212,175,55,.2);
+padding:25px;
+border-radius:16px;
+transition:.3s}
+.card:hover{transform:translateY(-8px);box-shadow:0 0 25px rgba(212,175,55,.2)}
+.payment img{width:260px;display:block;margin:20px auto;border-radius:18px}
+.contact{text-align:center}
+footer{background:#111;padding:30px;text-align:center;color:#bbb}
+@keyframes float{
+0%{transform:translateY(0)}
+50%{transform:translateY(-16px)}
+100%{transform:translateY(0)}
+}
+@media(max-width:900px){
+.hero{flex-direction:column;text-align:center}
+.hero-left h1{font-size:44px}
+.hero-right img,.founder-card img{width:240px}
+.founder-card{flex-direction:column;text-align:center}
+.navbar{flex-direction:column;gap:15px}
+.navbar ul{flex-wrap:wrap;justify-content:center}
+}
