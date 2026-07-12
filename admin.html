@@ -1,1 +1,55 @@
-<!DOCTYPE html><html lang="en"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>TVK Foundation Admin</title><style>body{margin:0;background:#111;color:#fff;font-family:Arial}.header{display:flex;justify-content:space-between;align-items:center;padding:18px;background:#1a1a1a;border-bottom:2px solid #d4af37}.logo{color:#d4af37;font-size:28px;font-weight:bold}.container{padding:20px}.grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:16px}.card{background:#222;border:1px solid #d4af37;border-radius:10px;padding:18px}.card h3{color:#d4af37;margin:0}.num{font-size:32px;font-weight:bold;margin-top:10px}table{width:100%;border-collapse:collapse;margin-top:20px}th,td{border:1px solid #444;padding:10px}th{background:#d4af37;color:#000}.btn{background:#d4af37;border:none;padding:10px 16px;border-radius:8px;font-weight:bold}</style></head><body><div class='header'><div class='logo'>TVK Foundation Admin</div><button class='btn'>Logout</button></div><div class='container'><div class='grid'><div class='card'><h3>Total Students</h3><div class='num'>0</div></div><div class='card'><h3>Payments</h3><div class='num'>0</div></div><div class='card'><h3>Revenue</h3><div class='num'>₹0</div></div><div class='card'><h3>Courses</h3><div class='num'>1</div></div></div><h2 style='color:#d4af37'>Recent Admissions</h2><table><tr><th>Name</th><th>Course</th><th>Status</th></tr><tr><td>No Data</td><td>AI Foundation</td><td>Pending</td></tr></table></div></body></html>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>TVK Foundation Admin Login</title>
+<style>
+*{margin:0;padding:0;box-sizing:border-box}
+body{
+display:flex;justify-content:center;align-items:center;
+height:100vh;background:#050505;
+font-family:Arial,sans-serif;color:#fff}
+.card{
+width:360px;background:#111;border:2px solid #d4af37;
+padding:30px;border-radius:18px;
+box-shadow:0 0 20px rgba(212,175,55,.25)}
+h1{text-align:center;color:#d4af37;margin-bottom:8px}
+p{text-align:center;color:#bbb;margin-bottom:20px}
+input{
+width:100%;padding:14px;margin:10px 0;
+background:#1a1a1a;color:#fff;
+border:1px solid #444;border-radius:10px}
+button{
+width:100%;padding:14px;margin-top:10px;
+background:#d4af37;color:#000;
+border:none;border-radius:10px;
+font-weight:bold;cursor:pointer}
+button:hover{opacity:.9}
+.msg{text-align:center;margin-top:15px;color:#ffcc66}
+</style>
+</head>
+<body>
+<div class="card">
+<h1>TVK Foundation</h1>
+<p>Admin Login</p>
+<input id="email" type="email" placeholder="Admin Email">
+<input id="password" type="password" placeholder="Password">
+<button onclick="login()">Login</button>
+<div class="msg" id="msg"></div>
+</div>
+
+<script>
+function login(){
+const email=document.getElementById('email').value.trim();
+const pass=document.getElementById('password').value.trim();
+if(email==="admin@tvkfoundation.com" && pass==="TVK@123"){
+ document.getElementById('msg').innerHTML="Login Successful...";
+ setTimeout(()=>location.href="admin.html",1000);
+}else{
+ document.getElementById('msg').innerHTML="Invalid Email or Password";
+}
+}
+</script>
+</body>
+</html>
