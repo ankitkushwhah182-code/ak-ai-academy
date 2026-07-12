@@ -1,0 +1,288 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>Student Dashboard | TVK Foundation</title>
+
+<link rel="stylesheet" href="style.css">
+
+<style>
+
+body{
+background:#0d0d0d;
+font-family:Poppins,sans-serif;
+color:white;
+margin:0;
+}
+
+.header{
+display:flex;
+justify-content:space-between;
+align-items:center;
+padding:20px;
+background:#111;
+border-bottom:2px solid gold;
+}
+
+.header h1{
+color:gold;
+}
+
+.logout-btn{
+background:gold;
+color:black;
+padding:10px 20px;
+border:none;
+border-radius:8px;
+cursor:pointer;
+font-weight:bold;
+}
+
+.container{
+padding:25px;
+max-width:1200px;
+margin:auto;
+}
+
+.cards{
+display:grid;
+grid-template-columns:repeat(auto-fit,minmax(250px,1fr));
+gap:20px;
+margin-top:20px;
+}
+
+.card{
+background:#1a1a1a;
+border:1px solid gold;
+padding:20px;
+border-radius:15px;
+}
+
+.card h3{
+color:gold;
+margin-bottom:10px;
+}
+
+.profile{
+display:flex;
+align-items:center;
+gap:20px;
+margin-bottom:30px;
+}
+
+.profile img{
+width:120px;
+height:120px;
+border-radius:50%;
+border:3px solid gold;
+object-fit:cover;
+}
+
+.status{
+padding:8px 15px;
+border-radius:20px;
+background:green;
+display:inline-block;
+font-weight:bold;
+}
+
+table{
+width:100%;
+border-collapse:collapse;
+margin-top:20px;
+}
+
+table th,table td{
+border:1px solid #333;
+padding:12px;
+}
+
+table th{
+background:gold;
+color:black;
+}
+
+.download-btn{
+display:inline-block;
+margin-top:20px;
+padding:12px 20px;
+background:gold;
+color:black;
+border-radius:10px;
+text-decoration:none;
+font-weight:bold;
+}
+
+</style>
+
+</head>
+
+<body>
+
+<div class="header">
+
+<h1>TVK Foundation</h1>
+
+<button onclick="logout()" class="logout-btn">
+
+Logout
+
+</button>
+
+</div>
+
+<div class="container">
+
+<div class="profile">
+
+<img src="TvkFounder.jpeg">
+
+<div>
+
+<h2 id="studentName">
+
+Loading...
+
+</h2>
+
+<p id="studentEmail">
+
+Loading...
+
+</p>
+
+<span class="status" id="studentStatus">
+
+Pending
+
+</span>
+
+</div>
+
+</div>
+
+<div class="cards">
+
+<div class="card">
+
+<h3>Course</h3>
+
+<p id="courseName">
+
+AI Foundation
+
+</p>
+
+</div>
+
+<div class="card">
+
+<h3>Phone</h3>
+
+<p id="phone">
+
+----------</p>
+
+</div>
+
+<div class="card">
+
+<h3>Payment</h3>
+
+<p id="paymentStatus">
+
+Pending
+
+</p>
+
+</div>
+
+<div class="card">
+
+<h3>Certificate</h3>
+
+<p>
+
+Available After Approval
+
+</p>
+
+</div>
+
+</div>
+
+<h2 style="margin-top:40px;color:gold;">
+
+Student Information
+
+</h2>
+
+<table>
+
+<tr>
+
+<th>Name</th>
+
+<td id="tableName">
+
+Loading...
+
+</td>
+
+</tr>
+
+<tr>
+
+<th>Email</th>
+
+<td id="tableEmail">
+
+Loading...
+
+</td>
+
+</tr>
+
+<tr>
+
+<th>Course</th>
+
+<td id="tableCourse">
+
+Loading...
+
+</td>
+
+</tr>
+
+<tr>
+
+<th>Address</th>
+
+<td id="tableAddress">
+
+Loading...
+
+</td>
+
+</tr>
+
+</table>
+
+<a href="#" class="download-btn">
+
+Download Certificate
+
+</a>
+
+</div>
+
+<script type="module" src="student-dashboard.js"></script>
+
+</body>
+
+</html>

@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>TVK Foundation | Student Registration</title>
+
+<link rel="stylesheet" href="style.css">
+
+</head>
+
+<body>
+
+<div class="register-container">
+
+<div class="register-box">
+
+<img src="TvkFounder.jpeg" class="logo" alt="TVK Foundation">
+
+<h1>TVK Foundation</h1>
+
+<p>AI Foundation Course Registration</p>
+
+<form id="registerForm">
+
+<input
+type="text"
+id="name"
+placeholder="Full Name"
+required>
+
+<input
+type="email"
+id="email"
+placeholder="Email Address"
+required>
+
+<input
+type="tel"
+id="phone"
+placeholder="Mobile Number"
+required>
+
+<input
+type="password"
+id="password"
+placeholder="Create Password"
+required>
+
+<select id="course" required>
+
+<option value="">Select Course</option>
+
+<option value="AI Foundation">
+AI Foundation
+</option>
+
+<option value="AI Advanced">
+AI Advanced
+</option>
+
+</select>
+
+<textarea
+id="address"
+placeholder="Address"
+rows="3">
+</textarea>
+
+<button type="submit">
+
+Register Now
+
+</button>
+
+</form>
+
+<p id="msg"></p>
+
+<hr>
+
+<small>
+
+Already Registered?
+
+<a href="login.html">
+
+Login Here
+
+</a>
+
+</small>
+
+</div>
+
+</div>
+
+<script type="module" src="register.js"></script>
+
+</body>
+
+</html>
