@@ -1,0 +1,186 @@
+/* ===========================
+   TVK Foundation Register
+=========================== */
+
+*{
+margin:0;
+padding:0;
+box-sizing:border-box;
+font-family:Poppins,sans-serif;
+}
+
+body{
+background:#0d0d0d;
+display:flex;
+justify-content:center;
+align-items:center;
+min-height:100vh;
+padding:20px;
+}
+
+.register-box{
+
+width:100%;
+max-width:500px;
+
+background:#111;
+
+padding:35px;
+
+border-radius:18px;
+
+border:2px solid #d4af37;
+
+box-shadow:0 0 25px rgba(212,175,55,.25);
+
+}
+
+.register-box h2{
+
+color:#d4af37;
+
+text-align:center;
+
+margin-bottom:25px;
+
+}
+
+.input-group{
+
+margin-bottom:18px;
+
+}
+
+.input-group label{
+
+display:block;
+
+margin-bottom:8px;
+
+color:#fff;
+
+font-size:15px;
+
+}
+
+.input-group input,
+.input-group textarea,
+.input-group select{
+
+width:100%;
+
+padding:14px;
+
+background:#1a1a1a;
+
+border:1px solid #333;
+
+border-radius:10px;
+
+color:white;
+
+font-size:15px;
+
+outline:none;
+
+transition:.3s;
+
+}
+
+.input-group input:focus,
+.input-group textarea:focus,
+.input-group select:focus{
+
+border-color:#d4af37;
+
+box-shadow:0 0 10px rgba(212,175,55,.4);
+
+}
+
+textarea{
+
+resize:none;
+
+height:100px;
+
+}
+
+button{
+
+width:100%;
+
+padding:15px;
+
+margin-top:10px;
+
+background:#d4af37;
+
+border:none;
+
+border-radius:10px;
+
+font-size:17px;
+
+font-weight:bold;
+
+cursor:pointer;
+
+transition:.3s;
+
+}
+
+button:hover{
+
+background:#f3c542;
+
+transform:translateY(-2px);
+
+}
+
+.login-link{
+
+text-align:center;
+
+margin-top:20px;
+
+color:#bbb;
+
+}
+
+.login-link a{
+
+color:#d4af37;
+
+text-decoration:none;
+
+font-weight:bold;
+
+}
+
+.login-link a:hover{
+
+text-decoration:underline;
+
+}
+
+@media(max-width:600px){
+
+.register-box{
+
+padding:25px;
+
+}
+
+.register-box h2{
+
+font-size:24px;
+
+}
+
+button{
+
+font-size:16px;
+
+}
+
+}

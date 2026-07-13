@@ -1,87 +1,41 @@
 <!DOCTYPE html>
+
 <html lang="en">
-
 <head>
-
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
 <title>TVK Foundation | Student Registration</title>
-
-<link rel="stylesheet" href="style.css">
-
+<link href="register.css" rel="stylesheet"/>
 </head>
-
 <body>
-
 <div class="register-container">
-
 <div class="register-box">
-
-<img src="TvkFounder.jpeg" class="logo" alt="TVK Foundation">
-
+<img alt="TVK Foundation" class="logo" src="TvkFounder.jpeg"/>
 <h1>TVK Foundation</h1>
-
 <p>AI Foundation Course Registration</p>
-
 <form id="registerForm">
-
-<input
-type="text"
-id="name"
-placeholder="Full Name"
-required>
-
-<input
-type="email"
-id="email"
-placeholder="Email Address"
-required>
-
-<input
-type="tel"
-id="phone"
-placeholder="Mobile Number"
-required>
-
-<input
-type="password"
-id="password"
-placeholder="Create Password"
-required>
-
-<select id="course" required>
-
+<input id="name" placeholder="Full Name" required="" type="text"/>
+<input id="email" placeholder="Email Address" required="" type="email"/>
+<input id="phone" placeholder="Mobile Number" required="" type="tel"/>
+<input id="password" placeholder="Create Password" required="" type="password"/>
+<select id="course" required="">
 <option value="">Select Course</option>
-
 <option value="AI Foundation">
 AI Foundation
 </option>
-
 <option value="AI Advanced">
 AI Advanced
 </option>
-
 </select>
-
-<textarea
-id="address"
-placeholder="Address"
-rows="3">
+<textarea id="address" placeholder="Address" rows="3">
 </textarea>
-
 <button type="submit">
 
 Register Now
 
 </button>
-
-</form>
-
-<p id="msg"></p>
-
-<hr>
-
+<p id="msg"></p></form>
+<hr/>
 <small>
 
 Already Registered?
@@ -91,15 +45,9 @@ Already Registered?
 Login Here
 
 </a>
-
 </small>
-
 </div>
-
 </div>
-
-<script type="module" src="register.js"></script>
-
+<script src="register.js" type="module"></script>
 </body>
-
 </html>

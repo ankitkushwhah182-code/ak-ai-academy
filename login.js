@@ -1,73 +1,130 @@
+// ================================
+// TVK Foundation
 // login.js
+// ================================
 
 import {
   auth,
-  signInWithEmailAndPassword
+  signInWithEmailAndPassword,
+  onAuthStateChanged
 } from "./firebase.js";
 
-// Elements
-const email = document.getElementById("email");
-const password = document.getElementById("password");
-const loginBtn = document.getElementById("loginBtn");
-const msg = document.getElementById("msg");
+// Agar user pehle se login hai
+onAuthStateChanged(auth, (user) => {
 
-// Login Function
-loginBtn.addEventListener("click", async () => {
+  if (user) {
 
-    const userEmail = email.value.trim();
-    const userPassword = password.value;
+    // Admin Email
+    if (user.email === "tvkfoundation4@gmail.com") {
 
-    if (userEmail === "" || userPassword === "") {
-        msg.innerHTML = "⚠️ Please enter Email & Password";
-        msg.style.color = "orange";
-        return;
+      window.location.href = "admin.html";
+
+    } else {
+
+      window.location.href = "student-dashboard.html";
+
     }
 
-    try {
-
-        await signInWithEmailAndPassword(
-            auth,
-            userEmail,
-            userPassword
-        );
-
-        msg.innerHTML = "✅ Login Successful...";
-        msg.style.color = "lime";
-
-        setTimeout(() => {
-
-            window.location.href = "admin.html";
-
-        }, 1000);
-
-    } catch (error) {
-
-        console.log(error);
-
-        switch (error.code) {
-
-            case "auth/invalid-email":
-                msg.innerHTML = "❌ Invalid Email";
-                break;
-
-            case "auth/user-not-found":
-                msg.innerHTML = "❌ User Not Found";
-                break;
-
-            case "auth/wrong-password":
-                msg.innerHTML = "❌ Wrong Password";
-                break;
-
-            case "auth/invalid-credential":
-                msg.innerHTML = "❌ Invalid Email or Password";
-                break;
-
-            default:
-                msg.innerHTML = "❌ " + error.message;
-
-        }
-
-        msg.style.color = "red";
-    }
+  }
 
 });
+
+// Login Button
+
+const loginBtn = document.getElementById("loginBtn");
+
+loginBtn.addEventListener("click", login);
+
+async function login() {
+
+  const email = document.getElementById("email").value.trim();
+
+  const password = document.getElementById("password").value;
+
+  const msg = document.getElementById("msg");
+
+  if (email === "" || password === "") {
+
+    msg.style.color = "red";
+
+    msg.innerHTML = "Please enter Email & Password";
+
+    return;
+
+  }
+
+  try {
+
+    await signInWithEmailAndPassword(
+
+      auth,
+
+      email,
+
+      password
+
+    );
+
+    msg.style.color = "lime";
+
+    msg.innerHTML = "Login Successful...";
+
+    // Redirect
+
+    if (email === "tvkfoundation4@gmail.com") {
+
+      setTimeout(() => {
+
+        window.location.href = "admin.html";
+
+      }, 1000);
+
+    } else {
+
+      setTimeout(() => {
+
+        window.location.href = "student-dashboard.html";
+
+      }, 1000);
+
+    }
+
+  } catch (error) {
+
+    msg.style.color = "red";
+
+    switch (error.code) {
+
+      case "auth/user-not-found":
+
+        msg.innerHTML = "User not found.";
+
+        break;
+
+      case "auth/wrong-password":
+
+        msg.innerHTML = "Wrong password.";
+
+        break;
+
+      case "auth/invalid-email":
+
+        msg.innerHTML = "Invalid email.";
+
+        break;
+
+      case "auth/invalid-credential":
+
+        msg.innerHTML = "Invalid email or password.";
+
+        break;
+
+      default:
+
+        msg.innerHTML = error.message;
+
+    }
+
+  }
+
+}

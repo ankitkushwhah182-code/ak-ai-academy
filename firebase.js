@@ -22,10 +22,7 @@ import {
   setDoc
 } from "https://www.gstatic.com/firebasejs/12.16.0/firebase-firestore.js";
 
-// =========================
-// TVK Foundation Firebase Config
-// =========================
-
+// Firebase Config
 const firebaseConfig = {
   apiKey: "AIzaSyAQIys7rB9rhZPSnumi7abrfcc4Fyonv1o",
   authDomain: "tvkfoundation-be9ed.firebaseapp.com",
@@ -37,34 +34,28 @@ const firebaseConfig = {
 };
 
 // Initialize Firebase
-
 const app = initializeApp(firebaseConfig);
 
-// Authentication
-
+// Auth
 const auth = getAuth(app);
 
-// Firestore Database
-
+// Firestore
 const db = getFirestore(app);
 
-// Export Everything
-
+// Export
 export {
   auth,
   db,
-
   signInWithEmailAndPassword,
   createUserWithEmailAndPassword,
   signOut,
   onAuthStateChanged,
-
   collection,
   addDoc,
   getDocs,
   getDoc,
   doc,
+  setDoc,
   updateDoc,
-  deleteDoc,
-  setDoc
+  deleteDoc
 };

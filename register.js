@@ -1,86 +1,134 @@
+// ========================================
+// TVK Foundation
+// register.js (Real Firebase Version)
+// ========================================
+
 import {
-  auth,
-  db,
-  createUserWithEmailAndPassword,
-  doc,
-  setDoc
+    auth,
+    db,
+    createUserWithEmailAndPassword,
+    doc,
+    setDoc
 } from "./firebase.js";
 
+// Form
 const form = document.getElementById("registerForm");
 
-form.addEventListener("submit", async (e) => {
-  e.preventDefault();
+// Message
+const msg = document.getElementById("msg");
 
-  const name = document.getElementById("name").value.trim();
-  const email = document.getElementById("email").value.trim();
-  const phone = document.getElementById("phone").value.trim();
-  const course = document.getElementById("course").value.trim();
-  const password = document.getElementById("password").value;
+form.addEventListener("submit", registerStudent);
 
-  try {
+async function registerStudent(e) {
 
-    // Firebase Authentication
-    const userCredential = await createUserWithEmailAndPassword(
-      auth,
-      email,
-      password
-    );
+    e.preventDefault();
 
-    const user = userCredential.user;
+    // Form Values
+    const name = document.getElementById("name").value.trim();
+    const email = document.getElementById("email").value.trim();
+    const phone = document.getElementById("phone").value.trim();
+    const password = document.getElementById("password").value;
+    const course = document.getElementById("course").value;
+    const address = document.getElementById("address").value.trim();
 
-    // Firestore
-    await setDoc(doc(db, "students", user.uid), {
-      uid: user.uid,
-      name: name,
-      email: email,
-      phone: phone,
-      course: course,
-      role: "student",
-      status: "Pending",
-      createdAt: new Date()
-    });
+    if (
+        name === "" ||
+        email === "" ||
+        phone === "" ||
+        password === "" ||
+        course === ""
+    ) {
 
-    alert("Registration Successful");
+        msg.style.color = "red";
+        msg.innerHTML = "Please fill all required fields.";
+        return;
 
-    window.location.href = "login.html";
+    }
 
-  } catch (error) {
+    try {
 
-    alert(error.message);
+        // Create Firebase Auth Account
+        const userCredential =
+            await createUserWithEmailAndPassword(
+                auth,
+                email,
+                password
+            );
 
-  }
+        const user = userCredential.user;
 
-});<form id="registerForm">
+        // Save Student Data
+        await setDoc(doc(db, "students", user.uid), {
 
-<input type="text" id="name" placeholder="Full Name" required>
+            uid: user.uid,
 
-<input type="email" id="email" placeholder="Email" required>
+            name: name,
 
-<input type="text" id="phone" placeholder="Phone Number" required>
+            email: email,
 
-<input type="text" id="course" placeholder="Course Name" required>
+            phone: phone,
 
-<input type="password" id="password" placeholder="Password" required>
+            course: course,
 
-<button type="submit">
-Register
-</button>
+            address: address,
 
-</form>
+            role: "student",
 
-<script type="module" src="register.js"></script>export {
-auth,
-db,
-createUserWithEmailAndPassword,
-signInWithEmailAndPassword,
-signOut,
-onAuthStateChanged,
-collection,
-addDoc,
-getDocs,
-getDoc,
-doc,
-setDoc,
-updateDoc,
-deleteDoc
-};
+            status: "Pending",
+
+            paymentStatus: "Pending",
+
+            certificate: false,
+
+            createdAt: new Date().toISOString()
+
+        });
+
+        msg.style.color = "lime";
+
+        msg.innerHTML = "Registration Successful...";
+
+        setTimeout(() => {
+
+            window.location.href = "login.html";
+
+        }, 1500);
+
+    }
+
+    catch (error) {
+
+        console.log(error);
+
+        msg.style.color = "red";
+
+        switch (error.code) {
+
+            case "auth/email-already-in-use":
+
+                msg.innerHTML = "Email already registered.";
+
+                break;
+
+            case "auth/invalid-email":
+
+                msg.innerHTML = "Invalid Email.";
+
+                break;
+
+            case "auth/weak-password":
+
+                msg.innerHTML =
+                    "Password must be at least 6 characters.";
+
+                break;
+
+            default:
+
+                msg.innerHTML = error.message;
+
+        }
+
+    }
+
+}

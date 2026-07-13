@@ -1,98 +1,182 @@
-// =====================================
+// ===========================================
 // TVK Foundation
 // student-dashboard.js
-// =====================================
+// ===========================================
 
 import {
-  auth,
-  db,
-  onAuthStateChanged,
-  signOut,
-  doc,
-  getDoc
+    auth,
+    db,
+    onAuthStateChanged,
+    signOut,
+    doc,
+    getDoc
 } from "./firebase.js";
 
-// ---------------------------
-// Authentication Check
-// ---------------------------
+// ============================
+// Check Login
+// ============================
 
 onAuthStateChanged(auth, async (user) => {
 
-  if (!user) {
-    window.location.href = "login.html";
-    return;
-  }
+    if (!user) {
 
-  try {
+        window.location.href = "login.html";
+        return;
 
-    const studentRef = doc(db, "students", user.uid);
-    const studentSnap = await getDoc(studentRef);
-
-    if (!studentSnap.exists()) {
-      alert("Student record not found.");
-      return;
     }
 
-    const data = studentSnap.data();
+    try {
 
-    // Profile
-    document.getElementById("studentName").textContent = data.name || "-";
-    document.getElementById("studentEmail").textContent = data.email || "-";
-    document.getElementById("studentStatus").textContent = data.status || "Pending";
+        const studentRef = doc(db, "students", user.uid);
 
-    // Cards
-    document.getElementById("courseName").textContent = data.course || "-";
-    document.getElementById("phone").textContent = data.phone || "-";
-    document.getElementById("paymentStatus").textContent =
-      data.paymentStatus || "Pending";
+        const studentSnap = await getDoc(studentRef);
 
-    // Table
-    document.getElementById("tableName").textContent = data.name || "-";
-    document.getElementById("tableEmail").textContent = data.email || "-";
-    document.getElementById("tableCourse").textContent = data.course || "-";
-    document.getElementById("tableAddress").textContent =
-      data.address || "-";
+        if (!studentSnap.exists()) {
 
-    // Certificate Button
-    const btn = document.querySelector(".download-btn");
+            alert("Student Record Not Found");
 
-    if (data.status === "Approved") {
-      btn.style.pointerEvents = "auto";
-      btn.style.opacity = "1";
+            return;
 
-      if (data.certificateUrl) {
-        btn.href = data.certificateUrl;
-      }
-    } else {
-      btn.href = "#";
-      btn.style.pointerEvents = "none";
-      btn.style.opacity = "0.5";
-      btn.textContent = "Certificate Not Available";
+        }
+
+        const data = studentSnap.data();
+
+        // ==========================
+        // Profile
+        // ==========================
+
+        document.getElementById("studentName").textContent =
+            data.name || "-";
+
+        document.getElementById("studentEmail").textContent =
+            data.email || "-";
+
+        document.getElementById("studentStatus").textContent =
+            data.status || "Pending";
+
+        // ==========================
+        // Cards
+        // ==========================
+
+        document.getElementById("courseName").textContent =
+            data.course || "-";
+
+        document.getElementById("phone").textContent =
+            data.phone || "-";
+
+        document.getElementById("paymentStatus").textContent =
+            data.paymentStatus || "Pending";
+
+        // ==========================
+        // Table
+        // ==========================
+
+        document.getElementById("tableName").textContent =
+            data.name || "-";
+
+        document.getElementById("tableEmail").textContent =
+            data.email || "-";
+
+        document.getElementById("tableCourse").textContent =
+            data.course || "-";
+
+        document.getElementById("tableAddress").textContent =
+            data.address || "-";
+
+        // ==========================
+        // Status Color
+        // ==========================
+
+        const status =
+            document.getElementById("studentStatus");
+
+        if (data.status === "Approved") {
+
+            status.style.background = "green";
+
+        }
+
+        if (data.status === "Rejected") {
+
+            status.style.background = "red";
+
+        }
+
+        if (data.status === "Pending") {
+
+            status.style.background = "orange";
+
+        }
+
+        // ==========================
+        // Certificate
+        // ==========================
+
+        const btn =
+            document.querySelector(".download-btn");
+
+        if (data.certificate === true &&
+            data.certificateUrl) {
+
+            btn.href = data.certificateUrl;
+
+            btn.style.pointerEvents = "auto";
+
+            btn.style.opacity = "1";
+
+        } else {
+
+            btn.href = "#";
+
+            btn.style.pointerEvents = "none";
+
+            btn.style.opacity = ".5";
+
+            btn.innerHTML =
+                "Certificate Not Available";
+
+        }
+
     }
 
-  } catch (err) {
-    console.error(err);
-    alert("Failed to load student data.");
-  }
+    catch (error) {
+
+        console.log(error);
+
+        alert(error.message);
+
+    }
 
 });
 
-// ---------------------------
+// ============================
 // Logout
-// ---------------------------
+// ============================
 
 window.logout = async function () {
 
-  try {
+    try {
 
-    await signOut(auth);
+        await signOut(auth);
 
-    window.location.href = "login.html";
+        window.location.href = "login.html";
 
-  } catch (err) {
+    }
 
-    console.error(err);
+    catch (error) {
 
-  }
+        alert(error.message);
+
+    }
 
 };
+
+// ============================
+// Auto Refresh Every 30 Seconds
+// ============================
+
+setInterval(() => {
+
+    location.reload();
+
+}, 30000);
